@@ -22,38 +22,10 @@
   font-size: 2.5rem;
 }
 
-.title,
-.description {
+.title{
   text-align: center;
 }
 
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.description a,
-.description a:visited,
-.card a,
-.card a:visited {
-  color:black;
-  text-decoration: underline;
-}
-
-.card:hover a,
-.card:focus a,
-.card:active a {
-  color:#ec6e24;
-}
-
-.code {
-  background: #e1e1e1;
-  border-radius: 5px;
-  padding: 0.3rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
 
 .grid {
   display: flex;
@@ -66,26 +38,26 @@
 
 .card {
   margin: .5rem;
-  flex-basis: 45%;
+  flex-basis: 100%;
   padding: 1.5rem;
   text-align: left;
-  color: inherit;
+  color: #ec6e24;
   text-decoration: none;
-  border: 1px solid #eaeaea;
+  border: 1px solid #ec6e24;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
 }
 
 .card:hover,
-.card:focus,
-.card:active {
-  color: #ec6e24;
-  border-color: #ec6e24;
+.card:hover h2 {
+  color: #000;
+  border-color: #000;
 }
 
 .card h2 {
-  margin: 0 0 1rem 0;
   font-size: 1.5rem;
+  color: #ec6e24;
 }
 
 .card p {

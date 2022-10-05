@@ -14,9 +14,14 @@
     "node": ">=16.15.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "bootstrap": "^5.1.0",
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "reactstrap": "^9.1.4",
     "sharp": "^0.30.5"
   },
   "devDependencies": {

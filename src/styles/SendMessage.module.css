@@ -1,0 +1,58 @@
+.messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.message_left {
+    display: flex;
+    align-self: start;
+    background-color: #E8E8EA;
+    padding: .5rem 1.5rem;
+    margin: 0.75rem;
+    border-radius: 1.75rem
+}
+
+.message_right {
+    display: flex;
+    align-self: end;
+    background-color: #2196F3;
+    padding: .5rem 1.5rem;
+    margin: 0.75rem;
+    border-radius: 1.75rem;
+    color: #fff;
+}
+
+.input_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 1.25rem 0;
+}
+
+.input_container input{
+    padding-right: 2.188rem;
+    width: 100%;
+    padding: 1rem !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    
+}
+
+.input_container input:focus,
+.input_container button:focus {
+    outline: none;
+}
+
+.input_container button {
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    right: 1.5rem;
+}
+
+.input_container button svg {
+    right: 1.5rem;
+    height: 1.3rem;
+    transform: rotate(57deg);
+    color: #A0A0A0;
+}
