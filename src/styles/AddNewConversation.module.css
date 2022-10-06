@@ -1,0 +1,44 @@
+.input_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 1.25rem 0;
+}
+
+.input_container input{
+    padding-right: 2.188rem;
+    width: 100%;
+    padding: 1rem !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    
+}
+
+.input_container input:focus,
+.input_container button:focus {
+    outline: none;
+}
+
+.input_container label {
+    margin-right: 0.5rem;
+}
+
+.input_container button {
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    right: 1.5rem;
+}
+
+.input_container button svg {
+    right: 1.5rem;
+    height: 1.3rem;
+    transform: rotate(57deg);
+    color: #A0A0A0;
+}
+
+.input_container select {
+
+}
+
+

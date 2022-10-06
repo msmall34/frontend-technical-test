@@ -5,23 +5,25 @@ import styles from '../styles/Conversations.module.css'
 import { ConversationDetailed } from '../components/ConversationDetailed'
 import { Collapse } from 'reactstrap'
 import { SendMessage } from '../components/SendMessage'
-import { getAllConsersations } from '../api/data';
+import { getAllConsersations, loadUsers } from '../api/data';
 import { Conversation } from '../types/conversation';
+import { User } from '../types/user';
+import { AddNewConversation } from '../components/AddNewConversation';
 
 
 interface Props {
   conversations: Conversation[]
+  users: User[]
 }
 
 const Conversations: FC = (props: Props) => {
   const year = new Date().getFullYear()
-  const {conversations} = props
+  const {users, conversations} = props
   const [activeIndex, setActiveIndex] = useState()
-
 
   const toggle = (index) => {
     setActiveIndex(index)
-}
+  }
 
   return (
     <div className={styles.container}>
@@ -45,7 +47,7 @@ const Conversations: FC = (props: Props) => {
                   <span className={styles.user}>{conversation.senderNickname ? conversation.senderNickname : ""}</span> - 
                   <span className={styles.user}>{conversation.recipientNickname ? conversation.recipientNickname : ""}</span>
                 </div>
-                <div>Last message today at : 
+                <div>Last message today at :  
                   <span className={styles.time}>{conversation.lastMessageTimestamp ? new Date(conversation.lastMessageTimestamp * 1000).toLocaleTimeString() : ""}</span> 
                 </div>
               </header>
@@ -65,6 +67,10 @@ const Conversations: FC = (props: Props) => {
             
           </article>
           )}
+
+          <article className={styles.card}>
+              <AddNewConversation userId={users.length + 1}/>
+          </article>
           
         </section>
       </main>
@@ -76,10 +82,10 @@ const Conversations: FC = (props: Props) => {
   )
 }
 
-
 export async function getStaticProps() {
+  const users = await loadUsers()
   const conversations = await getAllConsersations()
-  return { props: { conversations } }
+  return { props: { users, conversations } }
 }
 
 export default Conversations

@@ -42,4 +42,3 @@ export const ConversationDetailed: FC<Props> = ({conversationId}) => {
         renderMessages()
     )
 }
-  
