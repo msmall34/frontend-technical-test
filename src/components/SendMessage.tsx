@@ -3,8 +3,6 @@ import styles from '../styles/SendMessage.module.css'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
-
 interface Props {
     conversationId: number
 }
@@ -34,17 +32,15 @@ export const SendMessage: FC<Props> = ({conversationId}) => {
     const response = await fetch(endpoint, options)
 
     const result = await response.json()
-    console.log('result', result)
   }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div className={styles.input_container}>
-                <input type="text" id="message" name="message" placeholder='Send message' required />
-                <button type="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
-            </div>
-        </form>
-      )
+  return (
+      <form onSubmit={handleSubmit}>
+          <div className={styles.input_container}>
+              <label htmlFor="message" className="visually-hidden">Send message</label>
+              <input type="text" id="message" name="message" placeholder='Send message' required />
+              <button type="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
+          </div>
+      </form>
+    )
 }
-
-  

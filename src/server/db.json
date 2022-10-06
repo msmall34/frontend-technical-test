@@ -23,6 +23,14 @@
       "senderId": 4,
       "senderNickname": "Elodie",
       "lastMessageTimestamp": 1625648667
+    },
+    {
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "senderId": 5,
+      "senderNickname": "Muriel",
+      "lastMessageTimestamp": 1665017784131,
+      "id": 4
     }
   ],
   "messages": [
