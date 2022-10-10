@@ -25,11 +25,11 @@
       "lastMessageTimestamp": 1625648667
     },
     {
-      "recipientId": 2,
-      "recipientNickname": "Jeremie",
+      "recipientId": 4,
+      "recipientNickname": "Elodie",
       "senderId": 5,
       "senderNickname": "Muriel",
-      "lastMessageTimestamp": 1665017784131,
+      "lastMessageTimestamp": 1665367708074,
       "id": 4
     }
   ],
@@ -61,6 +61,20 @@
       "timestamp": 1620284667,
       "authorId": 2,
       "body": "Bonjour c'est le premier message de la seconde conversation"
+    },
+    {
+      "conversationId": 3,
+      "authorId": 1,
+      "body": "test envois de message",
+      "timestamp": 1665367664091,
+      "id": 5
+    },
+    {
+      "conversationId": 4,
+      "authorId": 5,
+      "body": "Ajout d'une nouvelle conversation",
+      "timestamp": 1665367708121,
+      "id": 6
     }
   ],
   "users": [
