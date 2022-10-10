@@ -4,66 +4,53 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, Collapse } from 'reactstrap'
-import { loadUsers } from '../api/data'
+import { addNewConversation, addNewMessage, loadUsers } from '../lib/api'
+import { User } from '../types/user';
+import { Conversation } from '../types/conversation'
+
 
 interface Props {
     userId: number
+    refreshConversations: (conversations: Conversation[]) => void
+    refreshMessages: (refreshMessages) => void
 }
 
-export const AddNewConversation: FC<Props> = ({userId}) => {
+export const AddNewConversation: FC<Props> = ({userId, refreshConversations, refreshMessages}) => {
     const [open, setOpen] = useState(false)
-    const [userOptions, setUserOptions] = useState([])
-    const [userSelected, setUserSelected] = useState("")
-
-    useEffect(() => {
-        getOptions()
-    }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const users = await loadUsers()
-        const retrieveRecipient = users.filter(user => user.nickname === userSelected)
-        const recipientIdToSend = retrieveRecipient[0].id
-
-        const data = {
-            recipientId: recipientIdToSend,
-            recipientNickname: userSelected,
-            senderId: userId,
+        const users: User[] = await loadUsers()
+        const retrieveRecipient = users.filter(user => user.id === userId)
+        const recipientNickname = retrieveRecipient[0].nickname
+        
+        const conversationData = {
+            recipientId: userId,
+            recipientNickname: recipientNickname,
+            senderId: users.length + 1,
             senderNickname: event.target.firstname.value,
-            lastMessageTimestamp : Date.now()
+            lastMessageTimestamp: Date.now()
         }
-
-        const JSONdata = JSON.stringify(data)
-
-        const endpoint = `http://localhost:3005/conversations/${userId}`
-
-        const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSONdata,
+        const convoJSONdata = JSON.stringify(conversationData)        
+        const newConversation = await addNewConversation(convoJSONdata, userId)
+        refreshConversations(newConversation)
+        
+        if(event.target.message.value) {
+            const messageData = {
+                conversationId: userId,
+                authorId: users.length + 1,
+                body: event.target.message.value,
+                timestamp: Date.now()
+            }
+            const messageJSONdata = JSON.stringify(messageData)
+            const newMessage = await addNewMessage(messageJSONdata, newConversation.id)
+            refreshMessages(newMessage)
         }
-        const response = await fetch(endpoint, options)
-        const result = await response.json()
+        
     }
-
-    const handleSelect = event => {
-        setUserSelected(event.currentTarget.value)
-    };
 
     const toggle = () => {
         setOpen(!open)
-    }
-
-    const getOptions = async () => {
-        const users = await loadUsers()
-        const options: string[] = [];
-        for(const user of users){
-            options.push(user.nickname)
-        }
-
-        setUserOptions(options)
     }
 
   return (
@@ -71,19 +58,13 @@ export const AddNewConversation: FC<Props> = ({userId}) => {
             <Button onClick={toggle}>Start a new conversation <FontAwesomeIcon icon={faPlusSquare} /></Button>
             <Collapse isOpen={open}>
                 <form onSubmit={handleSubmit}>
-                    <div className={styles.input_container}>
-                        <label htmlFor="listOfUsers" className='label'>Select the user you wish to talk to :</label>
-                        <select id="listOfUsers"
-                                value={userSelected}
-                                onChange={handleSelect}>
-                            {userOptions && userOptions.map(userOption =><option>{userOption ? userOption : ""}</option>)}
-                        </select>
-                    </div>
+                    
                     <div className={styles.input_container}>
                         <label htmlFor="firstname" className="visually-hidden">Your firstname</label>
                         <input type="text" id="firstname" name="firstname" placeholder='Your firstname' required />
                     </div>
                     <div className={styles.input_container}>
+                        <label htmlFor="message" className="visually-hidden">Send your message</label>
                         <input type="text" id="message" name="message" placeholder='Send your message' required />
                         <button type="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
                     </div>

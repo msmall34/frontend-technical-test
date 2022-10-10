@@ -16,6 +16,11 @@
     align-items: center;
   }
 
+  .header {
+    width: 100%;
+    padding-left: 0.5rem;
+  }
+
   .grid {
     display: flex;
     align-items: center;
@@ -66,4 +71,36 @@
     flex-direction: column;
     padding: 1.5rem 0;
     cursor: pointer;
+}
+
+.back_btn {
+  display: flex;
+  margin: 1.5rem 0;
+  padding: 1.5rem 0 !important;
+  all: unset;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 1.3rem;
+}
+
+.back_btn svg {
+  height: 1rem;
+  color: #A0A0A0;
+  margin-right: 0.6rem;
+}
+
+.noFound {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.noFound .back_btn {
+  position : absolute;
+  top: 0;
+  left: 1.5rem;
 }
